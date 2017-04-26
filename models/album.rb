@@ -29,4 +29,10 @@ class Album
     new_id = result_hash["id"].to_i
     @id = new_id
   end
+
+  def Album.all()
+    sql = "SELECT * FROM albums;"
+    albums = SqlRunner.run(sql)
+    return albums.map { |album| Album.new(album)}
+  end
 end
