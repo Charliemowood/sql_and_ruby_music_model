@@ -1,10 +1,10 @@
-require(PG)
+require('PG')
 class SqlRunner
 
   def SqlRunner.run(sql)
 
     begin
-      db = PG.connect ({dbname: 'music', host: 'localhost'})
+      db = PG.connect({dbname: 'music', host: 'localhost'})
       result = db.exec(sql)
     ensure
       db.close()
