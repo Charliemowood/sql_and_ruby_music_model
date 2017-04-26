@@ -11,5 +11,12 @@ album1 = Album.new({
   'artist_id' => artist1.id
   })
 album1.save()
+
+album2 = Album.new({
+  'title' => 'Suspicious Minds',
+  'genre' => 'rock',
+  'artist_id' => artist1.id
+  })
+album2.save()
 binding.pry
 nil
