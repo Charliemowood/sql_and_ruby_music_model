@@ -35,4 +35,11 @@ class Album
     albums = SqlRunner.run(sql)
     return albums.map { |album| Album.new(album)}
   end
+
+  def artists
+    sql = "SELECT * FROM artists WHERE id = #{@id};"
+    artist_hashes = SqlRunner.run(sql)
+    artist_objects = artist_hashes.map { |artist_hash| Artist.new(artist_hash)}
+    return artist_objects
+  end
 end
