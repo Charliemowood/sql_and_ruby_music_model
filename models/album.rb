@@ -1,5 +1,5 @@
 require('pg')
-# require_relative('../db/sql_runner')
+require_relative('../db/sql_runner')
 require_relative('./artist')
 
 class Album
@@ -12,5 +12,21 @@ class Album
     @genre = options['genre']
     @id = options['id'].to_i if options['id']
     @artist_id = options['artist_id'].to_i if options['artist_id']
+  end
+
+  def save()
+    sql = "INSERT INTO albums (
+    title,
+    genre,
+    artist_id
+    ) VALUES (
+    '#{ @title }',
+    '#{ @genre }',
+    #{ @artist_id })
+    RETURNING id;"
+    result = SqlRunner.run(sql)
+    result_hash = result.first
+    new_id = result_hash["id"].to_i
+    @id = new_id
   end
 end
